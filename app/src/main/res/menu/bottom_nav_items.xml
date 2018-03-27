@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_top"
+        android:title="@string/navigation_title_top"
+        android:icon="@drawable/ic_globe"/>
+    <item
+        android:id="@+id/menu_country"
+        android:title="@string/navigation_title_country"
+        android:icon="@drawable/ic_flag_black_24dp"/>
+    <item
+        android:id="@+id/menu_local"
+        android:title="@string/navigation_title_local"
+        android:icon="@drawable/ic_place_black_24dp"/>
+</menu>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">News Sample App</string>
+    <string name="webservice_url">https://newsapi.org</string>
+    <string name="api_key">39ef90bd75c340abaedb6f712e648b30</string>
+
+    <string name="navigation_title_top">World</string>
+    <string name="navigation_title_country">Country</string>
+    <string name="navigation_title_local">Local</string>
+    <string name="description_article_image">thumbnail</string>
+</resources>
