@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.brentpanther.newsapi.sample.Article
+import com.brentpanther.newsapi.sample.network.Article
 import com.brentpanther.newsapi.sample.R
 import com.squareup.picasso.Picasso
 import java.util.*
@@ -24,13 +24,13 @@ class ArticleRecyclerViewAdapter(var articles: List<Article>,
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (_, title, description, _, urlToImage, published, source) = articles[position]
-        holder.title.text = title
-        holder.snippet.text = description
-        holder.time.text = calculateTime(published)
-        holder.source.text = " - ${source.name}"
+        val article = articles[position]
+        holder.title.text = article.title
+        holder.snippet.text = article.description
+        holder.time.text = calculateTime(article.publishedAt)
+        holder.source.text = " - ${article.publisher}"
 
-        Picasso.get().load(urlToImage).resizeDimen(R.dimen.thumbnail_size, R.dimen.thumbnail_size)
+        Picasso.get().load(article.urlToImage).resizeDimen(R.dimen.thumbnail_size, R.dimen.thumbnail_size)
                 .centerCrop()
          .into(holder.image)
 

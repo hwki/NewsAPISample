@@ -11,17 +11,19 @@ class ArticleFragment : BaseArticleFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ArticleListViewModel::class.java)
-        arguments?.let {
-            viewModel?.initialize(sources = it.getString("sources"))
+        arguments?.apply {
+            viewModel?.initializeTop(getString("section", ""), sources = getString("sources"))
         }
     }
 
     companion object {
-        fun newInstance(sources: String? = null) : ArticleFragment {
+        fun newInstance(section: String, sources: String? = null) : ArticleFragment {
             val articleFragment = ArticleFragment()
-            val args = Bundle()
-            args.putString("sources", sources)
-            articleFragment.arguments = args
+            with (Bundle()) {
+                putString("sources", sources)
+                putString("section", section)
+                articleFragment.arguments = this
+            }
             return articleFragment
         }
     }

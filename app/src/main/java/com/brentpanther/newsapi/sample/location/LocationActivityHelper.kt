@@ -19,9 +19,7 @@ interface LocationActivityHelper {
 
     fun requestLocation(activity: AppCompatActivity, viewModel: CurrentLocationViewModel, l: (CurrentLocation) -> Unit) {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (!ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_REQUEST_LOCATION)
-            }
+            ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_REQUEST_LOCATION)
         } else {
             viewModel.location?.start(activity)
             val currentLocationViewModel = ViewModelProviders.of(activity).get(CurrentLocationViewModel::class.java)

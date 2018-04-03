@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity(), LocationActivityHelper {
             adapter = object : FragmentPagerAdapter(supportFragmentManager) {
                 override fun getItem(position: Int): Fragment {
                     return when (position) {
-                        0 -> ArticleFragment.newInstance(sources="reuters,google-news")
-                        1 -> LocationAwareArticleFragment.newInstance(country=preferenceHelper.countryCode)
-                        2 -> LocationAwareArticleFragment.newInstance(city=preferenceHelper.city,
+                        0 -> ArticleFragment.newInstance("top", sources="reuters,google-news")
+                        1 -> LocationAwareArticleFragment.newInstance("country", country=preferenceHelper.countryCode)
+                        2 -> LocationAwareArticleFragment.newInstance("local", city=preferenceHelper.city,
                                 state=preferenceHelper.state)
                         else -> throw IllegalArgumentException("invalid pager position")
                     }

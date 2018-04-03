@@ -14,14 +14,15 @@ class LocationAwareArticleFragment : BaseArticleFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ArticleListViewModel::class.java)
-        arguments?.let {
-            val country = it.getString("country")
-            val city = it.getString("city")
-            val state = it.getString("state")
+        arguments?.apply {
+            val country = getString("country")
+            val city = getString("city")
+            val state = getString("state")
+            val section = getString("section")
             if (country != null) {
-                viewModel?.initialize(country)
+                viewModel?.initializeTop(section, country)
             } else {
-                viewModel?.initializeLocal(city, state)
+                viewModel?.initializeLocal(section, city, state)
             }
         }
     }
@@ -37,17 +38,18 @@ class LocationAwareArticleFragment : BaseArticleFragment() {
             val country = arguments?.getString("country")
             val city = arguments?.getString("city")
             val state = arguments?.getString("state")
+            val section = arguments?.getString("section", "")!!
 
             if (country != null) {
                 if (country == it.countryCode) return@Observer
                 // country has changed, update articles for country fragment
-                viewModel?.clear(this)
-                viewModel?.initialize(it.country)
+                viewModel?.clear(section,this)
+                viewModel?.initializeTop(section, it.country)
             } else if (city != null && state != null) {
                 if (city == it.city && state == it.state) return@Observer
                 // city, state has changed, update articles for local fragment
-                viewModel?.clear(this)
-                viewModel?.initializeLocal(it.city, it.state)
+                viewModel?.clear(section,this)
+                viewModel?.initializeLocal(section, it.city, it.state)
             }
 
             observeArticles()
@@ -56,10 +58,12 @@ class LocationAwareArticleFragment : BaseArticleFragment() {
     }
 
     companion object {
-        fun newInstance(country: String? = null, city: String? = null, state: String? = null) : LocationAwareArticleFragment {
+        fun newInstance(section: String, country: String? = null, city: String? = null,
+                        state: String? = null) : LocationAwareArticleFragment {
             val articleFragment = LocationAwareArticleFragment()
             with(Bundle()) {
                 putString("country", country)
+                putString("section", section)
                 putString("city", city)
                 putString("state", state)
                 articleFragment.arguments = this

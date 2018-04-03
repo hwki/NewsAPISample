@@ -1,5 +1,7 @@
-package com.brentpanther.newsapi.sample
+package com.brentpanther.newsapi.sample.network
 
+import com.brentpanther.newsapi.sample.MyApplication
+import com.brentpanther.newsapi.sample.R
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Rfc3339DateJsonAdapter
 import okhttp3.OkHttpClient

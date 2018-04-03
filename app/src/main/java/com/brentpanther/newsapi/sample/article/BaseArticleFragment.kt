@@ -24,7 +24,7 @@ open class BaseArticleFragment : Fragment() {
     protected fun observeArticles() {
         viewModel?.articles?.observe(this, Observer {
             if (it == null) return@Observer
-            adapter.articles = it
+            adapter.articles = it.articles
             adapter.notifyDataSetChanged()
         } )
     }

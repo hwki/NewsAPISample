@@ -6,6 +6,7 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import com.google.android.gms.location.*
+import java.io.IOException
 import java.util.*
 
 class CurrentLocationViewData : LiveData<CurrentLocation>() {
@@ -19,16 +20,22 @@ class CurrentLocationViewData : LiveData<CurrentLocation>() {
         callback = object : LocationCallback() {
             override fun onLocationResult(location: LocationResult?) {
                 location?.let {
-                    val addresses = Geocoder(context.applicationContext, Locale.getDefault()).getFromLocation(location.lastLocation.latitude,
-                            location.lastLocation.longitude, 1)
-                    if (addresses.isNotEmpty()) {
-                        locationClient?.removeLocationUpdates(this)
-                        value = CurrentLocation(addresses[0])
-                    }
+                    geocode(it, this, context.applicationContext)
                 }
             }
         }
         locationClient?.requestLocationUpdates(LocationRequest.create().setPriority(LocationRequest.PRIORITY_LOW_POWER), callback, null)
+    }
+
+    private fun geocode(location: LocationResult, callback: LocationCallback, context: Context) {
+        try {
+            val addresses = Geocoder(context, Locale.getDefault()).getFromLocation(location.lastLocation.latitude,
+                    location.lastLocation.longitude, 1)
+            if (addresses.isNotEmpty()) {
+                locationClient?.removeLocationUpdates(callback)
+                value = CurrentLocation(addresses[0])
+            }
+        } catch (ignored: IOException) {}
     }
 
     override fun onInactive() {
