@@ -39,7 +39,7 @@ interface ArticleDao {
         select a.* from article a inner join
         articlesection b on a.id = b.articleId
         inner join section c on b.sectionId = c.id
-        where c.name = :section order by publishedAt limit 25
+        where c.name = :section order by publishedAt desc limit 25
     """)
     fun getBySection(section: String): LiveData<List<Article>>
 
