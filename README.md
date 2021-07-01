@@ -10,5 +10,5 @@ Sample MVVM news app pulling news headlines from [News API](https://newsapi.org)
 * Day/Night mode
 * Android Jetpack Libraries
 
-!(../screenshots/Screenshot_Light.png)
-!(../screenshots/Screenshot_Dark.png)
+![Light](/screenshots/Screenshot_Light.png)
+![Dark](/screenshots/Screenshot_Dark.png)
