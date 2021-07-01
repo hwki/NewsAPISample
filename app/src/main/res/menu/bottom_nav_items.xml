@@ -5,11 +5,15 @@
         android:title="@string/navigation_title_top"
         android:icon="@drawable/ic_globe"/>
     <item
-        android:id="@+id/menu_country"
-        android:title="@string/navigation_title_country"
-        android:icon="@drawable/ic_flag_black_24dp"/>
+        android:id="@+id/menu_sports"
+        android:title="@string/navigation_title_sports"
+        android:icon="@drawable/ic_baseline_sports_football_24"/>
+    <item
+        android:id="@+id/menu_tech"
+        android:title="@string/navigation_title_tech"
+        android:icon="@drawable/ic_baseline_devices_24"/>
     <item
         android:id="@+id/menu_local"
         android:title="@string/navigation_title_local"
-        android:icon="@drawable/ic_place_black_24dp"/>
+        android:icon="@drawable/ic_baseline_place_24"/>
 </menu>

@@ -5,22 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.brentpanther.newsapi.sample.MainActivity">
+    tools:context="com.brentpanther.newsapi.sample.ui.MainActivity">
 
-    <include layout="@layout/toolbar" />
+    <include android:id="@+id/toolbar" layout="@layout/toolbar" />
 
-    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pager"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_nav_graph"
+        />
 
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemTextColor="@color/textColorPrimary"
+        app:backgroundTint="@color/colorPrimary"
+        app:itemIconTint="@color/textColorPrimary"
+        app:labelVisibilityMode="labeled"
         android:elevation="8dp"
-        android:background="@android:color/white"
         app:menu="@menu/bottom_nav_items" />
 
 </LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/menu_top">
+
+    <fragment
+        android:id="@+id/menu_top"
+        android:name="com.brentpanther.newsapi.sample.ui.articles.top.TopArticleFragment"
+        android:label="TopArticleFragment">
+        <argument android:name="view" app:argType="com.brentpanther.newsapi.sample.Section" android:defaultValue="TOP"/>
+    </fragment>
+    <fragment
+        android:id="@+id/menu_sports"
+        android:name="com.brentpanther.newsapi.sample.ui.articles.top.TopArticleFragment"
+        android:label="TopArticleFragment">
+        <argument android:name="view" app:argType="com.brentpanther.newsapi.sample.Section" android:defaultValue="SPORTS"/>
+    </fragment>
+    <fragment
+        android:id="@+id/menu_tech"
+        android:name="com.brentpanther.newsapi.sample.ui.articles.top.TopArticleFragment"
+        android:label="TopArticleFragment">
+        <argument android:name="view" app:argType="com.brentpanther.newsapi.sample.Section" android:defaultValue="TECH"/>
+    </fragment>
+    <fragment
+        android:id="@+id/menu_local"
+        android:name="com.brentpanther.newsapi.sample.ui.articles.location.LocationAwareArticleFragment"
+        android:label="LocationAwareArticleFragment">
+        <argument android:name="view" app:argType="com.brentpanther.newsapi.sample.Section" android:defaultValue="LOCAL"/>
+    </fragment>
+</navigation>
